@@ -147,6 +147,11 @@
       "control_id": "PR.AC-3",
       "control_name": "Remote access is managed",
       "description": "Enabling 'Allow access to Azure services' on a SQL Server firewall permits any Azure-hosted resource to connect to the database remotely without restriction. PR.AC-3 requires that remote access is managed and controlled. Access should be restricted to specific trusted IP ranges or private endpoints to ensure only authorised systems can reach the database."
+    },
+    "AZ-IDN-004": {
+      "control_id": "PR.AC-4",
+      "control_name": "Access permissions and authorizations are managed",
+      "description": "PIM ensures privileged access permissions are managed with time-bound activation and approval workflows. Without PIM, permanently assigned admin roles violate the principle of least privilege and increase the blast radius of compromised accounts."
     }
   }
 }

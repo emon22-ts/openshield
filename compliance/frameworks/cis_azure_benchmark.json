@@ -146,7 +146,12 @@
     "AZ-DB-004": {
       "control_id": "4.1.2",
       "control_name": "Ensure that 'Allow access to Azure services' for SQL Servers is disabled",
-      "description": "Enabling 'Allow access to Azure services' on a SQL Server firewall creates a rule that permits any Azure-hosted resource — including services from other tenants — to connect to the server. This significantly increases the attack surface. Access should be restricted to specific trusted IP ranges or private endpoints."
+      "description": "Enabling 'Allow access to Azure services' on a SQL Server firewall creates a rule that permits any Azure-hosted resource \u2014 including services from other tenants \u2014 to connect to the server. This significantly increases the attack surface. Access should be restricted to specific trusted IP ranges or private endpoints."
+    },
+    "AZ-IDN-004": {
+      "control_id": "1.14",
+      "control_name": "Ensure that 'Privileged Identity Management' is used to manage privileged access",
+      "description": "Privileged Identity Management provides time-based and approval-based role activation to mitigate the risk of excessive, unnecessary, or misused access permissions on resources. Without PIM, admin roles are permanently assigned with no just-in-time controls or approval workflows."
     }
   }
 }
