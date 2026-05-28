@@ -103,6 +103,11 @@
       "control_name": "Malicious code is detected",
       "description": "The virtual machine does not have a recognised endpoint protection extension installed. DE.CM-4 requires that malicious code is detected on organisational systems. Without endpoint protection, malware and ransomware executing on the VM will not be detected or blocked."
     },
+    "AZ-CMP-004": {
+      "control_id": "PR.IP-12",
+      "control_name": "A vulnerability management plan is developed and implemented",
+      "description": "The virtual machine does not have automatic OS patching enabled. PR.IP-12 requires that a vulnerability management plan is developed and implemented. Without automatic patching, known OS vulnerabilities remain unmitigated and exploitable."
+    },
     "AZ-KV-001": {
       "control_id": "PR.IP-4",
       "control_name": "Backups of information are conducted, maintained, and tested",
@@ -142,6 +147,11 @@
       "control_id": "PR.IP-4",
       "control_name": "Backups of information are conducted, maintained, and tested",
       "description": "Purge protection ensures that deleted Key Vault objects can be recovered within the retention period and cannot be permanently destroyed before it expires. Without purge protection, backups of cryptographic material may be rendered unrecoverable if an insider or compromised account issues a purge operation during the soft-delete window."
+    },
+    "AZ-KV-005": {
+      "control_id": "PR.MA-1",
+      "control_name": "Maintenance and repair of organisational assets is performed",
+      "description": "A certificate stored in Azure Key Vault is expiring within 30 days with no auto-renewal configured. PR.MA-1 requires that maintenance of organisational assets is performed and logged. Certificate renewal is a critical maintenance task and failure to renew before expiry causes immediate service disruption."
     },
     "AZ-DB-004": {
       "control_id": "PR.AC-3",
