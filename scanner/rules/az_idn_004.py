@@ -43,11 +43,14 @@ def scan(azure_client: Any, subscription_id: str) -> List[Dict[str, Any]]:
 
     try:
         import requests
+
+        # Fetch token once and reuse headers for both API calls
         token = azure_client.credential.get_token(
             "https://graph.microsoft.com/.default"
         )
         headers = {"Authorization": f"Bearer {token.token}"}
 
+        # Step 1 — Get all role definitions
         response = requests.get(
             "https://graph.microsoft.com/v1.0/roleManagement/directory/roleDefinitions",
             headers=headers,
@@ -56,23 +59,7 @@ def scan(azure_client: Any, subscription_id: str) -> List[Dict[str, Any]]:
         response.raise_for_status()
         role_definitions = response.json().get("value", [])
 
-    except Exception as exc:
-        logger.error(
-            "AZ-IDN-004: Failed to fetch role definitions from Graph API: %s", exc
-        )
-        logger.warning(
-            "AZ-IDN-004: Ensure the service principal has "
-            "RoleManagement.Read.Directory permission on Microsoft Graph."
-        )
-        return findings
-
-    try:
-        import requests
-        token = azure_client.credential.get_token(
-            "https://graph.microsoft.com/.default"
-        )
-        headers = {"Authorization": f"Bearer {token.token}"}
-
+        # Step 2 — Get all PIM eligible role assignments
         response = requests.get(
             "https://graph.microsoft.com/v1.0/roleManagement/directory/roleEligibilitySchedules",
             headers=headers,
@@ -83,15 +70,21 @@ def scan(azure_client: Any, subscription_id: str) -> List[Dict[str, Any]]:
 
     except Exception as exc:
         logger.error(
-            "AZ-IDN-004: Failed to fetch PIM eligible schedules from Graph API: %s", exc
+            "AZ-IDN-004: Failed to fetch data from Graph API: %s", exc
+        )
+        logger.warning(
+            "AZ-IDN-004: Ensure the service principal has "
+            "RoleManagement.Read.Directory permission on Microsoft Graph."
         )
         return findings
 
+    # Build set of role definition IDs that have PIM eligible assignments
     pim_protected_role_ids = {
         schedule.get("roleDefinitionId", "")
         for schedule in eligible_schedules
     }
 
+    # Check each privileged role
     for role in role_definitions:
         role_name = role.get("displayName", "")
         role_id = role.get("id", "")
