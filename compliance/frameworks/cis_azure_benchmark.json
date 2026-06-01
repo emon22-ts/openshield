@@ -157,6 +157,21 @@
       "control_id": "1.14",
       "control_name": "Ensure that 'Privileged Identity Management' is used to manage privileged access",
       "description": "Privileged Identity Management provides time-based and approval-based role activation to mitigate the risk of excessive, unnecessary, or misused access permissions on resources. Without PIM, admin roles are permanently assigned with no just-in-time controls or approval workflows."
+    },
+    "AZ-KV-005": {
+      "control_id": "8.5",
+      "control_name": "Ensure that the expiration date is set on all certificates",
+      "description": "A certificate stored in Azure Key Vault is expiring within 30 days and does not have auto-renewal configured. CIS 8.5 requires that expiration dates are monitored and certificates are renewed before expiry to prevent service outages and broken authentication flows."
+    },
+    "AZ-NET-013": {
+      "control_id": "6.4",
+      "control_name": "Ensure that Azure Firewall is enabled on Virtual Networks",
+      "description": "Virtual networks should be protected by an Azure Firewall rather than relying on Network Security Groups alone. Azure Firewall provides centralized, stateful traffic inspection, FQDN and threat-intelligence filtering, and network-wide logging that NSGs cannot offer. VNets without an associated Azure Firewall lack a perimeter inspection and logging layer."
+    },
+    "AZ-NET-014": {
+      "control_id": "6.4",
+      "control_name": "Ensure that Azure Firewall is enabled on Virtual Networks",
+      "description": "VNet peering connections with allowGatewayTransit or useRemoteGateways enabled allow traffic to route between network segments through shared gateways. This can break network segmentation and enable lateral movement between zones that should remain isolated. Peering connections should be reviewed and gateway transit disabled unless explicitly required and documented."
     }
   }
 }
