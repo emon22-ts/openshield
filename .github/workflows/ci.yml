@@ -357,6 +357,7 @@ jobs:
           JSON:       ${{ steps.json_check.outcome }}
           API:        ${{ steps.api_check.outcome }}
           XREF:       ${{ steps.xref_check.outcome }}
+          PYTEST:     ${{ steps.pytest_check.outcome }}
           RULE_TESTS: ${{ steps.rule_tests.outcome }}
         run: |
           python - <<'PYEOF'
