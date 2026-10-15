@@ -262,6 +262,7 @@ def create_app() -> Flask:
     from api.routes.findings import findings_bp
     from api.routes.prioritization import prioritization_bp
     from api.routes.resources import resources_bp
+    from api.routes.ci_scans import ci_scans_bp
     from api.routes.scans import scans_bp
     from api.routes.score import score_bp
 
@@ -273,6 +274,7 @@ def create_app() -> Flask:
     app.register_blueprint(findings_bp)
     app.register_blueprint(prioritization_bp)
     app.register_blueprint(resources_bp)
+    app.register_blueprint(ci_scans_bp)
     app.register_blueprint(scans_bp)
     app.register_blueprint(score_bp)
 
